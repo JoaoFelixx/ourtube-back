@@ -12,14 +12,17 @@ const Channel = new Schema({
   banner_id: {
     type: Types.ObjectId,
     required: false,
+    ref: 'files'
   },
   cover_id: {
     type: Types.ObjectId,
     required: false,
+    ref: 'files'
   },
   user_id: {
     type: Types.ObjectId,
-    required: false
+    required: false,
+    ref: 'users'
   }
 }, { timestamps: true })
 

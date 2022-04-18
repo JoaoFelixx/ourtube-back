@@ -9,8 +9,8 @@ class FilesService {
     return await Files.create(file);
   }
 
-  static async get(id: string): Promise<FilesDoc | null> {
-    const result = await Files.findOne<FilesDoc>({ id });
+  static async get(_id: string): Promise<FilesDoc | null> {
+    const result = await Files.findById<FilesDoc>(_id);
     
     return result; 
   }

@@ -13,10 +13,12 @@ const Files = new Schema<FilesDoc>({
   id_channel: {
     type: Types.ObjectId,
     required: false,
+    ref: 'channels'
   },
   id_user: {
     type: Types.ObjectId,
     required: false,
+    ref: 'users'
   }
 }, { timestamps: true })
 

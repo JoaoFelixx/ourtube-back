@@ -8,7 +8,7 @@ import upload from './config/multerConfig';
 
 const routes = Router();
 
-routes.get('/files/:id_photo', getFile);
+routes.get('/files/:id', getFile);
 
 routes.post('/users', createUser);
 routes.post('/files', upload.single('avatar'), uploadFile);
