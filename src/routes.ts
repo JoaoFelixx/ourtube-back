@@ -1,15 +1,16 @@
 import { Router } from 'express';
 import {
   getFile,
+  createUser,
   uploadFile,
 } from './useCases';
 import upload from './config/multerConfig';
 
 const routes = Router();
 
-routes.get('/', (request, response) => response.status(200).json('Hello World'))
-routes.get('/:id_photo', getFile);
+routes.get('/files/:id_photo', getFile);
 
-routes.post('/photos', upload.single('avatar'), uploadFile);
+routes.post('/users', createUser);
+routes.post('/files', upload.single('avatar'), uploadFile);
 
 export default routes;
