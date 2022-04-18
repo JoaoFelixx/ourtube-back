@@ -1,13 +1,29 @@
 import '../models/User';
 import { model } from 'mongoose';
-import { UserProps } from '../interfaces';
+import { UserDoc, UserProps } from '../interfaces';
 
 const Users = model('users');
 
 class UserService {
-  static async create(user: UserProps) {
-    return await Users.create(user);
+  static async create(user: UserProps): Promise<Error | UserDoc> {
+    const userIsAlreadyRegistered = await Users.findOne({ email: user.email }) as UserDoc;
+
+    if (userIsAlreadyRegistered)
+      return new Error('User is already registered');
+
+    const result = await Users.create(user) as UserDoc;
+
+    return result;
   }
+
+  static async auth(email: string): Promise<Error | UserDoc> {
+    const user = await Users.findOne({ email }) as UserDoc;
+
+    if (!user) 
+      return new Error('User does not registered');
+
+    return user;
+  } 
 }
 
 export default UserService;
