@@ -20,6 +20,6 @@ const Files = new Schema<FilesDoc>({
     required: false,
     ref: 'users'
   }
-}, { timestamps: true })
+}, { timestamps: true });
 
 model('files', Files);

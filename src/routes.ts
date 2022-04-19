@@ -3,10 +3,9 @@ import {
   getFile,
   authUser,
   createUser,
-  uploadFile,
+  uploadVideo,
 } from './useCases';
-import upload from './config/multerConfig';
-import { middlewareJwt } from './middleware';
+import { middlewareJwt, middlewareMulter } from './middleware';
 
 const routes = Router();
 
@@ -17,6 +16,7 @@ routes.use(middlewareJwt);
 
 routes.get('/files/:id', getFile);
 
-routes.post('/files', upload.single('avatar'), uploadFile);
+routes.post('/videos', middlewareMulter.array('avatar', 2), uploadVideo);
+
 
 export default routes;
