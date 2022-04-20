@@ -1,42 +1,30 @@
 import { Request, Response } from "express";
-import {  } from "../../services";
+import { VideosService } from "../../services";
+import { VideosProps } from '../../interfaces';
 
 async function uploadVideo(request: Request, response: Response) {
-  interface PropsUpload {
-    path: string;
-    mimetype: string;
-  }
-
   try {
 
     if (!Array.isArray(request.files))
       return response.sendStatus(400).json('Send Video and/or preview');
 
-    const video = request.files.reduce<PropsUpload | Object>((acc, current) => {
+    const [photo] = request.files.filter(({ mimetype }) => !mimetype.indexOf('video'));
+    const [video] = request.files.filter(({ mimetype }) => mimetype.indexOf('video') === 0);
 
-      if (current.mimetype.indexOf('video') === 0) {
-        acc = {
-          ...acc,
-          video_src: current.path,
-          mimetype: current.mimetype,
-        }
+    if (!photo || !video)
+      return response.status(400).json('Send video and preview photo');
 
-        return acc
-      }
+    const data: VideosProps = {
+      mimetype: video.mimetype,
+      video_src: video.path,
+      preview_src: photo.path,
+      id_channel: request.body.id_channel
+    }
 
-      acc = {
-        ...acc,
-        preview_src: current.path,
-        id_channel: request.body.id_channel
-      }
+    const result = await VideosService.create(data);
 
-      return acc
+    response.status(201).json(result);
 
-    }, {});
-
-    video // it's ready
-
-    response.sendStatus(200)
   } catch (err) {
     response.sendStatus(409);
   }

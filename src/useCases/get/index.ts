@@ -1,5 +1,7 @@
-import getFile from "./getFile";
+import getVideoById from "./getVideoById";
+import getAllVideos from "./getAllVideos";
 
 export {
-  getFile,
+  getVideoById,
+  getAllVideos,
 }

@@ -1,31 +1,11 @@
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
-interface UserDoc extends Document {
+interface UserProps {
   email: string;
   password: string;
 }
 
-interface ChannelDoc extends Document {
-  name: string;
-  description: string;
-  banner_id: string;
-  cover_id: string;
-  id_user: string;
-}
-
-interface EnrolledDoc extends Document {
-  id_user: string;
-  id_channel: string;
-}
-
-interface FilesDoc extends Document {
-  name?: string;
-  file_src: string;
-  id_channel?: string;
-  id_user?: string;
-}
-
-interface UserProps {
+interface UserDoc extends Document {
   email: string;
   password: string;
 }
@@ -43,20 +23,25 @@ interface EnrolledProps {
   id_channel: string;
 }
 
-interface FilesProps {
-  name?: string;
-  file_src: string;
-  id_channel?: string;
-  id_user?: string;
+interface VideosProps {
+  video_src: string;
+  preview_src: string;
+  mimetype: string;
+  id_channel?: Types.ObjectId;
+}
+
+interface VideosDoc extends Document {
+  video_src: string;
+  view_src: string;
+  mimetype: string;
+  id_channel: string;
 }
 
 export {
   UserDoc,
-  FilesDoc,
+  VideosDoc,
   UserProps,
-  FilesProps,
-  ChannelDoc,
-  EnrolledDoc,
+  VideosProps,
   ChannelProps,
   EnrolledProps,
 }

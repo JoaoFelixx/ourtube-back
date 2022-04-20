@@ -1,6 +1,7 @@
 import { Schema, Types, model } from 'mongoose';
+import { VideosProps } from '../interfaces';
 
-const Videos = new Schema({
+const Videos = new Schema<VideosProps>({
   video_src: {
     type: String,
     required: true,

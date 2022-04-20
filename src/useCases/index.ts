@@ -1,13 +1,17 @@
-import { 
-  createUser, 
-  uploadVideo, 
-} from "./create";
-import { getFile } from './get';
 import { authUser } from "./auth";
+import {
+  getVideoById,
+  getAllVideos
+} from './get';
+import {
+  createUser,
+  uploadVideo,
+} from "./create";
 
 export {
-  getFile,
   authUser,
   createUser,
   uploadVideo,
+  getVideoById,
+  getAllVideos,
 }

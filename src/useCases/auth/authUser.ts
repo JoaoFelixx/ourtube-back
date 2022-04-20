@@ -1,6 +1,6 @@
-import { Request, Response } from 'express'
-import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import { Request, Response } from 'express'
 import { UserService } from '../../services';
 
 async function authUser(request: Request, response: Response) {
@@ -26,7 +26,7 @@ async function authUser(request: Request, response: Response) {
     }
 
     response.status(201).json(json);
-    
+
   } catch (err) {
     return response.sendStatus(409)
   }
