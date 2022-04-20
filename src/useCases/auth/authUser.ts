@@ -21,7 +21,6 @@ async function authUser(request: Request, response: Response) {
 
     const json = {
       id: result.id,
-      email: result.email,
       token
     }
 

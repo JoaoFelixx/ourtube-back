@@ -13,12 +13,12 @@ const Channel = new Schema<ChannelProps>({
   banner_id: {
     type: Types.ObjectId,
     required: false,
-    ref: 'banners'
+    ref: 'photos'
   },
   icon_id: {
     type: Types.ObjectId,
     required: false,
-    ref: 'icon'
+    ref: 'photos'
   },
   user_id: {
     type: Types.ObjectId,

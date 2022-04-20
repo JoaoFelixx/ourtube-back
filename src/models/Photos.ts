@@ -8,7 +8,7 @@ const Photos = new Schema<PhotosProps>({
   },
   channel_id: {
     type: Types.ObjectId,
-    required: false,
+    required: true,
     ref: 'channels'
   },
   

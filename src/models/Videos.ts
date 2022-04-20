@@ -14,7 +14,7 @@ const Videos = new Schema<VideosProps>({
     type: String,
     required: true,
   },
-  id_channel: {
+  channel_id: {
     type: Types.ObjectId,
     required: false,
     ref: 'channels'

@@ -15,9 +15,12 @@ async function createUser(request: Request, response: Response) {
     if (result instanceof Error)
       return response.status(400).json(result.message);
 
-    result.password = '';
+    const json = {
+      id: result.id, 
+      email: result.email,
+    }
 
-    return response.status(201).json(result)
+    return response.status(201).json(json)
 
   } catch (err) {
     response.sendStatus(409);
