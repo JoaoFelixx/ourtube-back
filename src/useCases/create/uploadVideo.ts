@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { VideosService } from "../../services";
+import { VideoService } from "../../services";
 import { VideosProps } from '../../interfaces';
 
 async function uploadVideo(request: Request, response: Response) {
@@ -21,7 +21,7 @@ async function uploadVideo(request: Request, response: Response) {
       id_channel: request.body.id_channel
     }
 
-    const result = await VideosService.create(data);
+    const result = await VideoService.create(data);
 
     response.status(201).json(result);
 

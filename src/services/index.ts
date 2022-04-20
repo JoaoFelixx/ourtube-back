@@ -1,7 +1,7 @@
 import UserService from "./UserService";
-import VideosService from "./VideosService";
+import VideoService from "./VideosService";
 
 export {
   UserService,
-  VideosService,
+  VideoService,
 }

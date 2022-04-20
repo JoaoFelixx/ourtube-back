@@ -1,12 +1,13 @@
 import { Schema, model, Types } from 'mongoose';
+import { EnrolledProps } from '../interfaces';
 
-const Enrolled = new Schema({
-  id_user: {
+const Enrolled = new Schema<EnrolledProps>({
+  user_id: {
     type: Types.ObjectId,
     required: true,
     ref: 'users'
   },
-  id_channel: {
+  channel_id: {
     type: Types.ObjectId,
     required: true,
     ref: 'channels'

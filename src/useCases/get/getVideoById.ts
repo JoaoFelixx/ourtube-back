@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { createReadStream } from 'fs';
-import { VideosService } from "../../services";
+import { VideoService } from "../../services";
 
 async function getFile(request: Request, response: Response) {
   try {
-    const result = await VideosService.getVideoById(request.params.id);
+    const result = await VideoService.getVideoById(request.params.id);
 
     if (!result?.video_src)
       return response.sendStatus(204);

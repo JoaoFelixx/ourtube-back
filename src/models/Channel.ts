@@ -1,6 +1,7 @@
 import { Schema, model, Types } from "mongoose";
+import { ChannelProps } from "../interfaces";
 
-const Channel = new Schema({
+const Channel = new Schema<ChannelProps>({
   name: {
     type: String,
     required: true,
@@ -12,16 +13,16 @@ const Channel = new Schema({
   banner_id: {
     type: Types.ObjectId,
     required: false,
-    ref: 'files'
+    ref: 'banners'
   },
-  cover_id: {
+  icon_id: {
     type: Types.ObjectId,
     required: false,
-    ref: 'files'
+    ref: 'icon'
   },
   user_id: {
     type: Types.ObjectId,
-    required: false,
+    required: true,
     ref: 'users'
   }
 }, { timestamps: true })

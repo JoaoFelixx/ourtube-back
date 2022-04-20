@@ -6,6 +6,7 @@ import {
 import {
   createUser,
   uploadVideo,
+  createChannel,
 } from "./create";
 
 export {
@@ -14,4 +15,5 @@ export {
   uploadVideo,
   getVideoById,
   getAllVideos,
+  createChannel,
 }

@@ -4,7 +4,7 @@ import { VideosProps, VideosDoc } from '../interfaces';
 
 const Videos = model('videos');
 
-class VideosService {
+class VideoService {
   static async create(file: VideosProps): Promise<VideosDoc> {
     return await Videos.create(file) as VideosDoc;
   }
@@ -20,4 +20,4 @@ class VideosService {
   }
 }
 
-export default VideosService;
+export default VideoService;

@@ -1,15 +1,17 @@
 import { Schema, Types, model } from 'mongoose';
+import { PhotosProps } from '../interfaces';
 
-const Icon = new Schema({
-  file_src: {
+const Photos = new Schema<PhotosProps>({
+  path: {
     type: String,
     required: true,
   },
-  id_channel: {
+  channel_id: {
     type: Types.ObjectId,
     required: false,
     ref: 'channels'
   },
+  
 }, { timestamps: true });
 
-model('Icons', Icon);
+model('photos', Photos);

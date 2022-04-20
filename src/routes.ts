@@ -5,6 +5,7 @@ import {
   uploadVideo,
   getAllVideos,
   getVideoById,
+  createChannel,
 } from './useCases';
 import { middlewareJwt, middlewareMulter } from './middleware';
 
@@ -18,7 +19,7 @@ routes.post('/users', createUser);
 routes.get('/videos', getAllVideos);
 routes.get('/files/:id', getVideoById);
 
+routes.post('/channel', createChannel);
 routes.post('/videos', middlewareMulter.array('avatar', 2), uploadVideo);
-
 
 export default routes;
