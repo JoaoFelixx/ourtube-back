@@ -12,6 +12,7 @@ async function getChannelById(request: Request, response: Response) {
 
   } catch (error) {
     console.log(error)
+    response.sendStatus(409);
   } 
 }
 

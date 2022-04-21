@@ -1,7 +1,7 @@
 import { Schema, Types, model } from 'mongoose';
-import { VideosProps } from '../interfaces';
+import { VideosProps, SchemaExtends } from '../interfaces';
 
-const Videos = new Schema<VideosProps>({
+const Videos = new Schema({
   video_src: {
     type: String,
     required: true,
@@ -19,6 +19,6 @@ const Videos = new Schema<VideosProps>({
     required: false,
     ref: 'channels'
   },
-}, { timestamps: true });
+}, { timestamps: true, strictPopulate: false } as SchemaExtends);
 
-model('videos', Videos);
+model<VideosProps>('videos', Videos);

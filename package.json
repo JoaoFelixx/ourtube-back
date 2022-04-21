@@ -4,6 +4,7 @@
   "description": "Api with nodejs",
   "main": "index.js",
   "scripts": {
+    "start-dev":"ts-node src/index.ts",
     "build": "tsc",
     "test": "jest",
     "start": "node .build/index.js",

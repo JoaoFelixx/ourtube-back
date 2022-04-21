@@ -1,8 +1,9 @@
 import '../models/Videos';
+import '../models/Photos';
 import '../models/Channel';
 import '../models/Enrolled';
 import { model, Types } from 'mongoose';
-import { ChannelProps, ChannelDoc } from '../interfaces';
+import { ChannelProps, ChannelDoc, EnrolledProps, PhotosProps, VideosProps } from '../interfaces';
 
 const Channel = model('channels');
 
@@ -20,11 +21,12 @@ class ChannelsService {
   }
 
   static async getAllChannels(): Promise<ChannelDoc[]> {
-    return await Channel.find().populate(['videos', 'enrolled', 'photos']);
+    return await Channel.find()
   }
 
-  static async getChannelById(id: string | Types.ObjectId): Promise<ChannelDoc | null> {
-    return await Channel.findById(id).populate(['videos', 'enrolled', 'photos']);
+  static async getChannelById(id: string | Types.ObjectId) {
+    return await Channel.findById(id)
+      .populate(['banner_id', 'icon_id'])
   }
 
   static async updateIconAndPhoto({ channel_id, icon_id, banner_id }: UpdateIcon): Promise<ChannelDoc | Error> {

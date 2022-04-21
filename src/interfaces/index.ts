@@ -1,8 +1,12 @@
-import { Document, Types } from 'mongoose';
+import { Document, Types, SchemaOptions } from 'mongoose';
 
 interface UserProps {
   email: string;
   password: string;
+}
+
+interface SchemaExtends extends SchemaOptions {
+  strictPopulate: boolean;
 }
 
 interface PhotosProps {
@@ -65,4 +69,5 @@ export {
   VideosProps,
   ChannelProps,
   EnrolledProps,
+  SchemaExtends,
 }

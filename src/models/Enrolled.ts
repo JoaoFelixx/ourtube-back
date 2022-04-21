@@ -1,7 +1,7 @@
 import { Schema, model, Types } from 'mongoose';
-import { EnrolledProps } from '../interfaces';
+import { EnrolledProps, SchemaExtends } from '../interfaces';
 
-const Enrolled = new Schema<EnrolledProps>({
+const Enrolled = new Schema({
   user_id: {
     type: Types.ObjectId,
     required: true,
@@ -12,6 +12,6 @@ const Enrolled = new Schema<EnrolledProps>({
     required: true,
     ref: 'channels'
   }
-}, { timestamps: true })
+}, { timestamps: true, strictPopulate: false  } as SchemaExtends)
 
-model('enrolled', Enrolled);
+model<EnrolledProps>('enrolled', Enrolled);

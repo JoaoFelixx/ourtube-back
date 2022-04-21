@@ -1,7 +1,7 @@
 import { Schema, model, Types } from "mongoose";
-import { ChannelProps } from "../interfaces";
+import { ChannelProps, SchemaExtends } from "../interfaces";
 
-const Channel = new Schema<ChannelProps>({
+const Channel = new Schema({
   name: {
     type: String,
     required: true,
@@ -25,6 +25,6 @@ const Channel = new Schema<ChannelProps>({
     required: true,
     ref: 'users'
   }
-}, { timestamps: true })
+}, { timestamps: true, strictPopulate: false } as SchemaExtends)
 
-model('channels', Channel);
+model<ChannelProps>('channels', Channel);

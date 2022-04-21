@@ -1,7 +1,7 @@
 import { Schema, Types, model } from 'mongoose';
-import { PhotosProps } from '../interfaces';
+import { PhotosProps, SchemaExtends } from '../interfaces';
 
-const Photos = new Schema<PhotosProps>({
+const Photos = new Schema({
   path: {
     type: String,
     required: true,
@@ -12,6 +12,6 @@ const Photos = new Schema<PhotosProps>({
     ref: 'channels'
   },
   
-}, { timestamps: true });
+}, { timestamps: true, strictPopulate: false  } as SchemaExtends);
 
-model('photos', Photos);
+model<PhotosProps>('photos', Photos);
