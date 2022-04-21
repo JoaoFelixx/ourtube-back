@@ -1,13 +1,19 @@
 import { authUser } from "./auth";
 import {
   getVideoById,
-  getAllVideos
+  getAllVideos,
+  getChannelById,
+  getChannelsData,
 } from './get';
 import {
   createUser,
   uploadVideo,
   createChannel,
 } from "./create";
+import {
+  updateChannelIcon,
+  updateChannelBanner,
+} from './update';
 
 export {
   authUser,
@@ -16,4 +22,8 @@ export {
   getVideoById,
   getAllVideos,
   createChannel,
+  getChannelById,
+  getChannelsData,
+  updateChannelIcon,
+  updateChannelBanner,
 }

@@ -19,12 +19,7 @@ async function authUser(request: Request, response: Response) {
 
     const token = await jwt.sign({ id: result.id }, process.env.SECRET_KEY_JWT || '', { expiresIn: '1d' });
 
-    const json = {
-      id: result.id,
-      token
-    }
-
-    response.status(201).json(json);
+    response.status(201).json({ id: result.id, token });
 
   } catch (err) {
     return response.sendStatus(409)

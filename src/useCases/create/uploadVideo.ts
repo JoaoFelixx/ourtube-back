@@ -18,14 +18,17 @@ async function uploadVideo(request: Request, response: Response) {
       mimetype: video.mimetype,
       video_src: video.path,
       preview_src: photo.path,
-      channel_id: request.body.id_channel
-    }
+      channel_id: request.body.channel_id
+    } 
+
+    console.log(data);
 
     const result = await VideoService.create(data);
 
     response.status(201).json(result);
 
   } catch (err) {
+    console.log(err)
     response.sendStatus(409);
   }
 }

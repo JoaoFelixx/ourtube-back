@@ -14,13 +14,11 @@ async function createUser(request: Request, response: Response) {
 
     if (result instanceof Error)
       return response.status(400).json(result.message);
-
-    const json = {
+    
+    return response.status(201).json({
       id: result.id, 
       email: result.email,
-    }
-
-    return response.status(201).json(json)
+    })
 
   } catch (err) {
     response.sendStatus(409);

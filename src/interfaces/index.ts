@@ -7,15 +7,15 @@ interface UserProps {
 
 interface PhotosProps {
   path: string;
-  channel_id?: Types.ObjectId;
+  channel_id?: Types.ObjectId | string;
 }
 
 interface ChannelProps {
   name: string;
   description: string;
   banner_id?: Types.ObjectId;
-  icon_id?: Types.ObjectId;
-  user_id?: Types.ObjectId;
+  icon_id?: string | Types.ObjectId;
+  user_id?: string | Types.ObjectId;
 }
 
 interface EnrolledProps {
@@ -30,16 +30,16 @@ interface VideosProps {
   channel_id?: Types.ObjectId;
 }
 
-interface PhotosDoc extends Document{
+interface PhotosDoc extends Document {
   path: string;
   channel_id: Types.ObjectId;
 }
 
-interface ChannelDoc extends Document{
+interface ChannelDoc extends Document {
   name: string;
   description: string;
-  banner_id?: Types.ObjectId;
-  icon_id?: Types.ObjectId;
+  banner_id?: string | Types.ObjectId;
+  icon_id?: string | Types.ObjectId;
   user_id?: Types.ObjectId;
 }
 

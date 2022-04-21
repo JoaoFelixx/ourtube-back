@@ -1,11 +1,25 @@
 import { Request, Response } from 'express'
-import ChannelsService from '../../services/ChannelsService';
+import { decodeId } from '../../utils';
+import { ChannelProps } from '../../interfaces';
+import { ChannelsService } from '../../services';
 
 async function createChannel(request: Request, response: Response) {
   try {
-    const result = await ChannelsService.create(request.body);
+    const user_id = decodeId(request.headers.authorization);
+    const { description, name } = request.body;
 
-    response.status(201).json(result)
+    if (!user_id)
+      return response.sendStatus(401);
+
+    const channel: ChannelProps = {
+      name,
+      user_id,
+      description,
+    }
+
+    const result = await ChannelsService.create(channel);
+
+    response.status(201).json(result);
 
   } catch (error) {
     response.sendStatus(409);
