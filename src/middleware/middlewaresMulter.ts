@@ -4,20 +4,30 @@ import { randomUUID as uuid } from 'crypto';
 
 const storage = diskStorage({
   destination: function (req, file, cb) {
-    const destiny = join(__dirname, '..', 'public', 'files');
+    try {
+      const destiny = join(__dirname, '..', 'public', 'files');
 
-    cb(null, destiny);
+      cb(null, destiny);
+
+    } catch (err) {
+      return new Error();
+    }
   },
 
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + uuid();
+    try {
+      const uniqueSuffix = Date.now() + '-' + uuid();
 
-    const filename = `${uniqueSuffix + extname(file.originalname.toString())}`;
-
-    cb(null, filename)
+      const filename = `${uniqueSuffix + extname(file.originalname.toString())}`;
+  
+      cb(null, filename)
+      
+    } catch (err) {
+      return new Error();
+    }
   },
 });
 
-const upload = multer({ storage });
+const middlewareMulter = multer({ storage });
 
-export default upload;
+export { middlewareMulter };

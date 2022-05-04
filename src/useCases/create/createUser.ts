@@ -2,10 +2,12 @@ import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import { UserService } from '../../services';
 import { UserProps } from '../../interfaces';
+import { randomUUID as uuid } from 'crypto';
 
 async function createUser(request: Request, response: Response) {
   try {    
     const user: UserProps = {
+      _id: uuid(),
       email: request.body.email.toLowerCase(),
       password: await bcrypt.hash(request.body.password, 8)
     }

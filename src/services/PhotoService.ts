@@ -6,9 +6,11 @@ const Photos = model('photos');
 
 class PhotoService {
   static async create(photo: PhotosProps): Promise<PhotosDoc> {
-    const result = await Photos.create(photo) as PhotosDoc;
+    return await Photos.create(photo) as PhotosDoc;
+  }
 
-    return result;
+  static async getPhotoById(_id: string): Promise<PhotosDoc | null> {
+    return await Photos.findById<PhotosDoc>(_id);
   }
 }
 

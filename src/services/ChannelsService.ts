@@ -2,31 +2,28 @@ import '../models/Videos';
 import '../models/Photos';
 import '../models/Channel';
 import '../models/Enrolled';
-import { model, Types } from 'mongoose';
-import { ChannelProps, ChannelDoc, EnrolledProps, PhotosProps, VideosProps } from '../interfaces';
+import { model } from 'mongoose';
+import { ChannelProps, ChannelDoc } from '../interfaces';
 
 const Channel = model('channels');
 
 interface UpdateIcon {
-  icon_id?: Types.ObjectId | string;
-  banner_id?: Types.ObjectId | string;
-  channel_id: Types.ObjectId | string;
+  icon_id?:  string;
+  banner_id?: string;
+  channel_id: string;
 }
 
 class ChannelsService {
   static async create(channel: ChannelProps): Promise<ChannelDoc> {
-    const result = await Channel.create(channel) as ChannelDoc;
-
-    return result;
+    return await Channel.create(channel) as ChannelDoc;
   }
 
   static async getAllChannels(): Promise<ChannelDoc[]> {
     return await Channel.find()
   }
 
-  static async getChannelById(id: string | Types.ObjectId) {
-    return await Channel.findById(id)
-      .populate(['banner_id', 'icon_id'])
+  static async getChannelById(id: string) {
+    return await Channel.findById(id).populate(['banner_id', 'icon_id'])
   }
 
   static async updateIconAndPhoto({ channel_id, icon_id, banner_id }: UpdateIcon): Promise<ChannelDoc | Error> {

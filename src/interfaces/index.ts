@@ -1,6 +1,7 @@
-import { Document, Types, SchemaOptions } from 'mongoose';
+import { Document, SchemaOptions } from 'mongoose';
 
 interface UserProps {
+  _id: string;
   email: string;
   password: string;
 }
@@ -10,41 +11,45 @@ interface SchemaExtends extends SchemaOptions {
 }
 
 interface PhotosProps {
+  _id: string;
   path: string;
-  channel_id?: Types.ObjectId | string;
+  channel_id: string;
 }
 
 interface ChannelProps {
+  _id?: string;
   name: string;
   description: string;
-  banner_id?: Types.ObjectId;
-  icon_id?: string | Types.ObjectId;
-  user_id?: string | Types.ObjectId;
+  banner_id?: string;
+  icon_id?: string;
+  user_id: string;
 }
 
 interface EnrolledProps {
-  user_id?: Types.ObjectId;
-  channel_id?: Types.ObjectId;
+  _id: string;
+  user_id: string;
+  channel_id: string;
 }
 
 interface VideosProps {
+  _id: string;
   video_src: string;
+  photo_id: string;
   mimetype: string;
-  preview_src: string;
-  channel_id?: Types.ObjectId;
+  channel_id: string;
 }
 
 interface PhotosDoc extends Document {
   path: string;
-  channel_id: Types.ObjectId;
+  channel_id: string;
 }
 
 interface ChannelDoc extends Document {
   name: string;
   description: string;
-  banner_id?: string | Types.ObjectId;
-  icon_id?: string | Types.ObjectId;
-  user_id?: Types.ObjectId;
+  banner_id: string;
+  icon_id: string;
+  user_id: string;
 }
 
 interface UserDoc extends Document {
@@ -54,9 +59,8 @@ interface UserDoc extends Document {
 
 interface VideosDoc extends Document {
   video_src: string;
-  view_src: string;
   mimetype: string;
-  channel_id?: Types.ObjectId;
+  channel_id: string;
 }
 
 export {

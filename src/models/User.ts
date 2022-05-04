@@ -1,6 +1,11 @@
 import { Schema, model } from "mongoose";
+import { UserProps } from '../interfaces';
 
 const User = new Schema({
+  _id: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     unique: true,
@@ -13,4 +18,4 @@ const User = new Schema({
   },
 }, { timestamps: true });
 
-model('users', User);
+model<UserProps>('users', User);

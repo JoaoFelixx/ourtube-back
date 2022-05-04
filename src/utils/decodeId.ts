@@ -1,15 +1,12 @@
 import 'dotenv/config'
 import jwt from 'jsonwebtoken';
-import { Types } from 'mongoose';
 
-const decodeId = (authorization: string | undefined): Types.ObjectId | void => {
+export const decodeId = (authorization: string | undefined): string | void => {
   if (!authorization) return
 
   const token = authorization.replace('Bearer', '').trim();
 
-  const { id } = jwt.decode(token) as { id: Types.ObjectId };
+  const { id } = jwt.decode(token) as { id: string };
 
   return id;
 }
-
-export default decodeId;

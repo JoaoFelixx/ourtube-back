@@ -1,16 +1,21 @@
 import { Request, Response } from "express";
 import { createReadStream } from 'fs';
-import { VideoService } from "../../services";
+import { VideoService, PhotoService } from "../../services";
 
 async function getFile(request: Request, response: Response) {
   try {
-    const result = await VideoService.getVideoById(request.params.id);
+    const [video, photo] = await Promise.all([
+      VideoService.getVideoById(request.params.id),
+      PhotoService.getPhotoById(request.params.id)
+    ])
 
-    if (!result?.video_src)
-      return response.sendStatus(204);
-
-    createReadStream(result?.video_src)
-      .pipe(response)
+    if (video?.video_src) 
+      return createReadStream(video?.video_src).pipe(response);
+      
+    if (photo?.path) 
+      return createReadStream(photo?.path).pipe(response);
+    
+    response.sendStatus(204);
 
   } catch (err) {
     return response.sendStatus(409)

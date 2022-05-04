@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { PhotosProps } from '../../interfaces';
 import { ChannelsService, PhotoService } from '../../services';
+import { randomUUID as uuid } from 'crypto';
 
 async function updateChannelIcon(request: Request, response: Response) {
   try {
@@ -8,6 +9,7 @@ async function updateChannelIcon(request: Request, response: Response) {
     const { channel_id } = request.params;
 
     const photo: PhotosProps = {
+      _id: uuid(),
       path,
       channel_id,
     }

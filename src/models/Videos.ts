@@ -1,12 +1,12 @@
-import { Schema, Types, model } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { VideosProps, SchemaExtends } from '../interfaces';
 
 const Videos = new Schema({
-  video_src: {
+  _id: {
     type: String,
-    required: true,
+    required: true
   },
-  preview_src: {
+  video_src: {
     type: String,
     required: true,
   },
@@ -14,8 +14,13 @@ const Videos = new Schema({
     type: String,
     required: true,
   },
+  photo_id: {
+    type: String,
+    required: true,
+    ref: 'photos',
+  },
   channel_id: {
-    type: Types.ObjectId,
+    type: String,
     required: false,
     ref: 'channels'
   },

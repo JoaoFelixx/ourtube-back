@@ -11,19 +11,17 @@ class UserService {
     if (userIsAlreadyRegistered)
       return new Error('User is already registered');
 
-    const result = await Users.create(user) as UserDoc;
-
-    return result;
+    return await Users.create(user) as UserDoc;
   }
 
   static async auth(email: string): Promise<Error | UserDoc> {
     const user = await Users.findOne({ email }) as UserDoc;
 
-    if (!user) 
+    if (!user)
       return new Error('User does not registered');
 
     return user;
-  } 
+  }
 }
 
 export default UserService;

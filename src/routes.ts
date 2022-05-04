@@ -18,18 +18,17 @@ const routes = Router();
 routes.post('/auth', authUser);
 routes.post('/users', createUser);
 
-routes.use(middlewareJwt);
-
 routes.get('/videos', getAllVideos);
 routes.get('/files/:id', getVideoById);
 routes.get('/channels', getChannelsData);
 routes.get('/channels/:channel_id', getChannelById);
 
+//routes.use(middlewareJwt);
+
 routes.post('/channels', createChannel);
 routes.post('/videos', middlewareMulter.array('video', 2), uploadVideo);
 
 routes.put('/channels/icon/:channel_id', middlewareMulter.single('icon'), updateChannelIcon);
-
 routes.put('/channels/banner/:channel_id', middlewareMulter.single('banner'), updateChannelBanner);
 
-export default routes;
+export { routes };

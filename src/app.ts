@@ -1,15 +1,13 @@
 import "dotenv/config";
+import "./connection/mongoStart";
 import express from "express";
 import cors from "cors";
-import routes from "./routes";
-import startMongoConnection from "./connection/mongoStart";
+import { routes } from "./routes";
 
-const app = express();
+const application = express();
 
-app.use(cors());
-app.use(express.json());
-app.use('/api/v1', routes);
+application.use(cors());
+application.use(express.json());
+application.use('/api/v1', routes);
 
-startMongoConnection();
-
-export default app;
+export { application };

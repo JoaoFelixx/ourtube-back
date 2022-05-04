@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { VideoService } from "../../services";
-import { VideosProps } from '../../interfaces';
+import { VideoService, PhotoService } from "../../services";
+import { VideosProps, PhotosProps } from '../../interfaces';
+import { randomUUID as uuid } from "crypto";
 
 async function uploadVideo(request: Request, response: Response) {
   try {
@@ -14,21 +15,35 @@ async function uploadVideo(request: Request, response: Response) {
     if (!photo || !video)
       return response.status(400).json('Send video and preview photo');
 
-    const data: VideosProps = {
+    const photo_id = uuid();
+
+    const photoForUpload: PhotosProps = {
+      _id: photo_id,
+      path: photo.path,
+      channel_id: request.body.channel_id,
+    }
+
+    const videoForUpload: VideosProps = {
+      _id: uuid(),
+      photo_id,
       mimetype: video.mimetype,
       video_src: video.path,
-      preview_src: photo.path,
       channel_id: request.body.channel_id
-    } 
+    }
 
-    console.log(data);
+    const [photoResult, videoResult] = await Promise.all([
+      PhotoService.create(photoForUpload),
+      VideoService.create(videoForUpload),
+    ])
 
-    const result = await VideoService.create(data);
+    const result = {
+      video: videoResult,
+      preview: photoResult,
+    }
 
     response.status(201).json(result);
 
   } catch (err) {
-    console.log(err)
     response.sendStatus(409);
   }
 }
