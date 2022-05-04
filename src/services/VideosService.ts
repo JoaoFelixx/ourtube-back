@@ -9,11 +9,11 @@ class VideoService {
   }
 
   static async getVideoById(_id: string): Promise<VideosDoc | null> {
-    return await Videos.findById<VideosDoc>(_id);
+    return await Videos.findOne<VideosDoc>({ _id: _id });
   }
 
   static async getAllVideos(): Promise<VideosDoc[]> {
-    return await Videos.find().populate('photo_id');
+    return await Videos.find();
   }
 }
 

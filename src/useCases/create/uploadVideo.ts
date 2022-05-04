@@ -9,7 +9,7 @@ async function uploadVideo(request: Request, response: Response) {
     if (!Array.isArray(request.files))
       return response.sendStatus(400).json('Send Video and/or preview');
 
-    const [photo] = request.files.filter(({ mimetype }) => !mimetype.indexOf('video'));
+    const [photo] = request.files.filter(({ mimetype }) => mimetype.indexOf('image') === 0);
     const [video] = request.files.filter(({ mimetype }) => mimetype.indexOf('video') === 0);
 
     if (!photo || !video)
