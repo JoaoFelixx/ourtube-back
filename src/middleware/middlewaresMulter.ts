@@ -19,15 +19,13 @@ const storage = diskStorage({
       const uniqueSuffix = Date.now() + '-' + uuid();
 
       const filename = `${uniqueSuffix + extname(file.originalname.toString())}`;
-  
+
       cb(null, filename)
-      
+
     } catch (err) {
       return new Error();
     }
   },
 });
 
-const middlewareMulter = multer({ storage });
-
-export { middlewareMulter };
+export const middlewareMulter = multer({ storage });

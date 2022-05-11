@@ -37,6 +37,7 @@ interface VideosProps {
   photo_id: string;
   mimetype: string;
   channel_id: string;
+  description: string;
 }
 
 interface PhotosDoc extends Document {
@@ -61,6 +62,7 @@ interface VideosDoc extends Document {
   video_src: string;
   mimetype: string;
   channel_id: string;
+  description: string;
 }
 
 export {

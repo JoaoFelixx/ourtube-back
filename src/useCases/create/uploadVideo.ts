@@ -28,7 +28,8 @@ async function uploadVideo(request: Request, response: Response) {
       photo_id,
       mimetype: video.mimetype,
       video_src: video.path,
-      channel_id: request.body.channel_id
+      channel_id: request.body.channel_id,
+      description: request.body.description
     }
 
     const [photoResult, videoResult] = await Promise.all([

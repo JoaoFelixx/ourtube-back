@@ -21,7 +21,7 @@ routes.post('/users', createUser);
 routes.get('/videos', getAllVideos);
 routes.get('/files/:id', getVideoById);
 routes.get('/channels', getChannelsData);
-routes.get('/channels/:channel_id', getChannelById);
+routes.get('/myChannel', getChannelById);
 
 //routes.use(middlewareJwt);
 

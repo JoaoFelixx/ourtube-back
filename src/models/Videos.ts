@@ -19,6 +19,10 @@ const Videos = new Schema({
     required: true,
     ref: 'photos',
   },
+  description: {
+    type: String,
+    required: true,
+  },
   channel_id: {
     type: String,
     required: false,

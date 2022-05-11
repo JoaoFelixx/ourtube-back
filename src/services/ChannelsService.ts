@@ -23,7 +23,7 @@ class ChannelsService {
   }
 
   static async getChannelById(id: string) {
-    return await Channel.findById(id).populate(['banner_id', 'icon_id'])
+    return await Channel.findById(id);
   }
 
   static async updateIconAndPhoto({ channel_id, icon_id, banner_id }: UpdateIcon): Promise<ChannelDoc | Error> {
