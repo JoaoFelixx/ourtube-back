@@ -13,7 +13,7 @@ class VideoService {
   }
 
   static async getAllVideos(): Promise<VideosDoc[]> {
-    return await Videos.find();
+    return await Videos.find().populate('channel_id')
   }
 }
 

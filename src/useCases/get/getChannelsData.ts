@@ -11,7 +11,6 @@ async function getChannelsData(request: Request, response: Response) {
     response.json(result);
 
   } catch (err) {
-    console.log(err)
     response.sendStatus(409);
   }
 }

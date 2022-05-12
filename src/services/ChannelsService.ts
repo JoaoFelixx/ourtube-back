@@ -18,6 +18,10 @@ class ChannelsService {
     return await Channel.create(channel) as ChannelDoc;
   }
 
+  static async getChannelByUserId(user_id: string): Promise<ChannelDoc> {
+    return await Channel.findOne({ user_id }) as ChannelDoc
+  }
+
   static async getAllChannels(): Promise<ChannelDoc[]> {
     return await Channel.find()
   }

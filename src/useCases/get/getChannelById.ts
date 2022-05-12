@@ -10,7 +10,7 @@ async function getChannelById(request: Request, response: Response) {
     if (!user_id)
       return response.sendStatus(401);
 
-    const result = await ChannelsService.getChannelById(user_id);
+    const result = await ChannelsService.getChannelByUserId(user_id);
 
     if (!result)
       return response.sendStatus(204);
@@ -18,7 +18,6 @@ async function getChannelById(request: Request, response: Response) {
     response.json(result);
 
   } catch (error) {
-    console.log(error)
     response.sendStatus(409);
   } 
 }
