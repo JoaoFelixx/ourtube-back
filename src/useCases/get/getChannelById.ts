@@ -1,16 +1,9 @@
 import { Request, Response } from 'express';
 import { ChannelsService } from '../../services';
-import { decodeId } from '../../utils';
 
 async function getChannelById(request: Request, response: Response) {
   try {
-
-    const user_id = decodeId(request.headers.authorization);
-
-    if (!user_id)
-      return response.sendStatus(401);
-
-    const result = await ChannelsService.getChannelByUserId(user_id);
+    const result = await ChannelsService.getChannelById(request.params.id);
 
     if (!result)
       return response.sendStatus(204);

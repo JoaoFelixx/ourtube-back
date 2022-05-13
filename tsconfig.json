@@ -1,17 +1,22 @@
 {
   "compilerOptions": {
+    "target": "es2020",
     "lib": [
       "ES2016"
     ],
-    "target": "es2020",
+    "allowJs": true,
+    "resolveJsonModule": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "./build",
     "rootDir": "./src",
     "esModuleInterop": true,
+    "removeComments": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
     "sourceMap": true,
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["__tests__/**/*", "node_modules"]
 }

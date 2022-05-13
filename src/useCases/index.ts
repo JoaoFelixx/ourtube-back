@@ -4,16 +4,14 @@ import {
   getAllVideos,
   getChannelById,
   getChannelsData,
+  getChannelByUserId,
 } from './get';
 import {
   createUser,
   uploadVideo,
   createChannel,
 } from "./create";
-import {
-  updateChannelIcon,
-  updateChannelBanner,
-} from './update';
+import { updateChannelIcon, updateChannelBanner, } from './update';
 
 export {
   authUser,
@@ -25,5 +23,6 @@ export {
   getChannelById,
   getChannelsData,
   updateChannelIcon,
+  getChannelByUserId,
   updateChannelBanner,
 }

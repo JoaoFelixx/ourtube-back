@@ -9,6 +9,7 @@ import {
   getChannelById,
   getChannelsData,
   updateChannelIcon,
+  getChannelByUserId,
   updateChannelBanner,
 } from './useCases';
 import { middlewareJwt, middlewareMulter } from './middleware';
@@ -21,7 +22,8 @@ routes.post('/users', createUser);
 routes.get('/videos', getAllVideos);
 routes.get('/files/:id', getVideoById);
 routes.get('/channels', getChannelsData);
-routes.get('/myChannel', getChannelById);
+routes.get('/channel/:id', getChannelById);
+routes.get('/myChannel', getChannelByUserId);
 
 //routes.use(middlewareJwt);
 
