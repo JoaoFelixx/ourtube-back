@@ -8,7 +8,7 @@ import { ChannelProps, ChannelDoc } from '../interfaces';
 const Channel = model('channels');
 
 interface UpdateIcon {
-  icon_id?:  string;
+  icon_id?: string;
   banner_id?: string;
   channel_id: string;
 }
@@ -42,6 +42,11 @@ class ChannelsService {
     await channel.save();
 
     return channel;
+  }
+
+  static async searchChannelByName(name: string): Promise<ChannelDoc[] | []> {
+    return await Channel.find<ChannelDoc>({ name: { $regex: name, $options: 'i' } })
+      .limit(5);
   }
 }
 

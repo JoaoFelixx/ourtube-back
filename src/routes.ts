@@ -8,6 +8,7 @@ import {
   createChannel,
   getChannelById,
   getChannelsData,
+  getChannelByName,
   updateChannelIcon,
   getChannelByUserId,
   updateChannelBanner,
@@ -25,7 +26,8 @@ routes.get('/files/:id', getVideoById);
 routes.get('/channels', getChannelsData);
 routes.get('/channel/:id', getChannelById);
 routes.get('/myChannel', getChannelByUserId);
-routes.get('/searchByDescription/:description', getVideoByDescription);
+routes.get('/channelByName/:name', getChannelByName);
+routes.get('/videoByDescription/:description', getVideoByDescription);
 
 //routes.use(middlewareJwt);
 

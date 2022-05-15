@@ -19,7 +19,7 @@ class VideoService {
     return await Videos.find().select(REQUIRED_DATA).populate('channel_id')
   }
 
-  static async searchVideoByDescription(description: string): Promise<VideosDoc[] | null> {
+  static async searchVideoByDescription(description: string): Promise<VideosDoc[] | []> {
     return await Videos.find<VideosDoc>({ description: { $regex: description, $options: 'i' } })
       .select(REQUIRED_DATA)
       .limit(5);

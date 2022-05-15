@@ -4,6 +4,7 @@ import {
   getAllVideos,
   getChannelById,
   getChannelsData,
+  getChannelByName,
   getChannelByUserId,
   getVideoByDescription,
 } from './get';
@@ -23,6 +24,7 @@ export {
   createChannel,
   getChannelById,
   getChannelsData,
+  getChannelByName,
   updateChannelIcon,
   getChannelByUserId,
   updateChannelBanner,
