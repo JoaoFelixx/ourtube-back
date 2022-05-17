@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { VideoService, PhotoService } from "../../services";
 import { VideosProps, PhotosProps } from '../../interfaces';
+import { VideoRepository, PhotoRepository } from "../../repositories";
 import { randomUUID as uuid } from "crypto";
 
 async function uploadVideo(request: Request, response: Response) {
@@ -33,8 +33,8 @@ async function uploadVideo(request: Request, response: Response) {
     }
 
     const [photoResult, videoResult] = await Promise.all([
-      PhotoService.create(photoForUpload),
-      VideoService.create(videoForUpload),
+      PhotoRepository.create(photoForUpload),
+      VideoRepository.create(videoForUpload),
     ])
 
     const result = {

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { decodeId } from '../../utils';
 import { ChannelProps } from '../../interfaces';
-import { ChannelsService } from '../../services';
+import { ChannelsRepository } from '../../repositories';
 import { randomUUID as uuid } from 'crypto';
 
 async function createChannel(request: Request, response: Response) {
@@ -20,7 +20,7 @@ async function createChannel(request: Request, response: Response) {
       description,
     }
 
-    const result = await ChannelsService.create(channel);
+    const result = await ChannelsRepository.create(channel);
 
     response.status(201).json(result);
 

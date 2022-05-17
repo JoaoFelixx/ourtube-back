@@ -6,7 +6,7 @@ const REQUIRED_DATA = '_id description mimetype photo_id channel_id createdAt up
 
 const Videos = model('videos');
 
-class VideoService {
+export class VideoRepository {
   static async create(file: VideosProps): Promise<VideosDoc> {
     return await Videos.create(file) as VideosDoc;
   }
@@ -16,7 +16,9 @@ class VideoService {
   }
 
   static async getAllVideos(): Promise<VideosDoc[]> {
-    return await Videos.find().select(REQUIRED_DATA).populate('channel_id')
+    return await Videos.find()
+      .select(REQUIRED_DATA)
+      .populate('channel_id')
   }
 
   static async searchVideoByDescription(description: string): Promise<VideosDoc[] | []> {
@@ -25,5 +27,3 @@ class VideoService {
       .limit(5);
   }
 }
-
-export default VideoService;

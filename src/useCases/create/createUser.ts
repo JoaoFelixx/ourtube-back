@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
-import { UserService } from '../../services';
+import { UserRepository } from '../../repositories';
 import { UserProps } from '../../interfaces';
 import { randomUUID as uuid } from 'crypto';
 
@@ -12,7 +12,7 @@ async function createUser(request: Request, response: Response) {
       password: await bcrypt.hash(request.body.password, 8)
     }
 
-    const result = await UserService.create(user);
+    const result = await UserRepository.create(user);
 
     if (result instanceof Error)
       return response.status(400).json(result.message);

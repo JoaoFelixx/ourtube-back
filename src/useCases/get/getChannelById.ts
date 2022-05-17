@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { ChannelsService } from '../../services';
+import { ChannelsRepository } from '../../repositories';
 
 async function getChannelById(request: Request, response: Response) {
   try {
-    const result = await ChannelsService.getChannelById(request.params.id);
+    const result = await ChannelsRepository.getChannelById(request.params.id);
 
     if (!result)
       return response.sendStatus(204);

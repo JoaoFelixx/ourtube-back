@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { createReadStream } from 'fs';
-import { VideoService, PhotoService } from "../../services";
+import { PhotoRepository, VideoRepository } from "../../repositories";
 
 async function getFile(request: Request, response: Response) {
   try {
     const [video, photo] = await Promise.all([
-      VideoService.getVideoById(request.params.id),
-      PhotoService.getPhotoById(request.params.id)
+      VideoRepository.getVideoById(request.params.id),
+      PhotoRepository.getPhotoById(request.params.id)
     ])
 
     if (video?.video_src) 

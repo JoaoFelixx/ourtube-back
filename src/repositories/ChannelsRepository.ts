@@ -13,7 +13,7 @@ interface UpdateIcon {
   channel_id: string;
 }
 
-class ChannelsService {
+export class ChannelsRepository {
   static async create(channel: ChannelProps): Promise<ChannelDoc> {
     return await Channel.create(channel) as ChannelDoc;
   }
@@ -49,5 +49,3 @@ class ChannelsService {
       .limit(5);
   }
 }
-
-export default ChannelsService;

@@ -4,7 +4,7 @@ import { UserDoc, UserProps } from '../interfaces';
 
 const Users = model('users');
 
-class UserService {
+export class UserRepository {
   static async create(user: UserProps): Promise<Error | UserDoc> {
     const userIsAlreadyRegistered = await Users.findOne({ email: user.email }) as UserDoc;
 
@@ -23,5 +23,3 @@ class UserService {
     return user;
   }
 }
-
-export default UserService;

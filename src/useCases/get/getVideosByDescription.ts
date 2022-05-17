@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { VideoService } from "../../services";
+import { VideoRepository } from "../../repositories";
 
 export async function getVideoByDescription(request: Request, response: Response) {
   try {
@@ -8,7 +8,7 @@ export async function getVideoByDescription(request: Request, response: Response
     if (!description)
       return response.sendStatus(404);
 
-    const result = await VideoService.searchVideoByDescription(description)
+    const result = await VideoRepository.searchVideoByDescription(description)
 
     if (!result?.length)
       return response.sendStatus(204);

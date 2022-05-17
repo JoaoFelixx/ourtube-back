@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express'
-import { UserService } from '../../services';
+import { UserRepository } from '../../repositories';
 
 async function authUser(request: Request, response: Response) {
   try {
     const { email, password } = request.body;
 
-    const result = await UserService.auth(email);
+    const result = await UserRepository.auth(email);
 
     if (result instanceof Error)
       return response.status(400).json(result.message);

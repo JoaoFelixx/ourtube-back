@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
-import { PhotosProps } from '../../interfaces';
-import { ChannelsService, PhotoService } from '../../services';
 import { randomUUID as uuid } from 'crypto';
+import { PhotosProps } from '../../interfaces';
+import { ChannelsRepository, PhotoRepository } from '../../repositories';
 
 async function updateChannelBanner(request: Request, response: Response) {
   try {
@@ -14,9 +14,9 @@ async function updateChannelBanner(request: Request, response: Response) {
       channel_id,
     }
 
-    const { id: banner_id } = await PhotoService.create(photo);
+    const { id: banner_id } = await PhotoRepository.create(photo);
 
-    const result = await ChannelsService.updateIconAndPhoto({ banner_id, channel_id });
+    const result = await ChannelsRepository.updateIconAndPhoto({ banner_id, channel_id });
 
     if (result instanceof Error) 
       return response.status(400).json(result.message);

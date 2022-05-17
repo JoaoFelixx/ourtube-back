@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { ChannelsService } from '../../services';
+import { ChannelsRepository } from '../../repositories';
 
 async function getChannelsData(request: Request, response: Response) {
   try {
-    const result = await ChannelsService.getAllChannels();
+    const result = await ChannelsRepository.getAllChannels();
 
     if (!result.length)
       return response.sendStatus(204);

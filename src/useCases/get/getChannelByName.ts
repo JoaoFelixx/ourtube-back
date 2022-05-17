@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ChannelsService } from '../../services';
+import { ChannelsRepository } from '../../repositories';
 
 export async function getChannelByName(request: Request, response: Response) {
   try {
@@ -8,7 +8,7 @@ export async function getChannelByName(request: Request, response: Response) {
     if (!name)
       return response.sendStatus(404);
 
-    const result = await ChannelsService.searchChannelByName(name);
+    const result = await ChannelsRepository.searchChannelByName(name);
 
     if (!result.length)
       return response.sendStatus(202);

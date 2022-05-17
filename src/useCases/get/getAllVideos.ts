@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { VideoService } from '../../services';
+import { VideoRepository } from '../../repositories';
 
 async function getAllVideos(request: Request, response: Response) {
   try {
-    const result = await VideoService.getAllVideos();
+    const result = await VideoRepository.getAllVideos();
 
     if (!result.length)
       return response.sendStatus(204);

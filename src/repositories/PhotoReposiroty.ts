@@ -4,7 +4,7 @@ import { PhotosDoc, PhotosProps } from '../interfaces';
 
 const Photos = model('photos');
 
-class PhotoService {
+export class PhotoRepository {
   static async create(photo: PhotosProps): Promise<PhotosDoc> {
     return await Photos.create(photo) as PhotosDoc;
   }
@@ -13,5 +13,3 @@ class PhotoService {
     return await Photos.findById<PhotosDoc>(_id);
   }
 }
-
-export default PhotoService;
