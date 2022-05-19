@@ -1,13 +1,10 @@
 import mongoose from 'mongoose';
 
-async function startMongoConnection() {
+(async () => {
   try {
     await mongoose.connect(process.env.URL_MONGO_DATABASE || '');
-    console.log('Successful connection');
 
   } catch (err) {
     console.table(['Error connection', err]);
   }
-}
-
-startMongoConnection();
+})();
