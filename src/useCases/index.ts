@@ -1,28 +1,32 @@
-import { authUser } from "./auth";
-import { updateChannelIcon, updateChannelBanner, } from './update';
-import { createUser, uploadVideo, createChannel, } from "./create";
+import { authUserController } from "./auth";
+import { updateBannerController, updateIconController } from './update';
 import {
-  getVideoById,
-  getAllVideos,
-  getChannelById,
-  getChannelsData,
-  getChannelByName,
-  getChannelByUserId,
-  getVideoByDescription,
+  createUserController,
+  createVideoController,
+  createChannelController,
+} from "./create";
+import {
+  getAllVideosController,
+  getMediaByIdController,
+  getAllChannelsController,
+  getChannelByIdController,
+  getChannelByNameController,
+  getChannelByUserIdController,
+  getVideoByDescriptionController,
 } from './get';
 
 export {
-  authUser,
-  createUser,
-  uploadVideo,
-  getVideoById,
-  getAllVideos,
-  createChannel,
-  getChannelById,
-  getChannelsData,
-  getChannelByName,
-  updateChannelIcon,
-  getChannelByUserId,
-  updateChannelBanner,
-  getVideoByDescription,
+  authUserController,
+  createUserController,
+  updateIconController,
+  createVideoController,
+  updateBannerController,
+  getAllVideosController,
+  getMediaByIdController,
+  createChannelController,
+  getAllChannelsController,
+  getChannelByIdController,
+  getChannelByNameController,
+  getChannelByUserIdController,
+  getVideoByDescriptionController,
 }

@@ -1,22 +1,18 @@
-import { Document, SchemaOptions } from 'mongoose';
+import { SchemaOptions } from 'mongoose';
 
-interface UserProps {
+interface User {
   _id: string;
   email: string;
   password: string;
 }
 
-interface SchemaExtends extends SchemaOptions {
-  strictPopulate: boolean;
-}
-
-interface PhotosProps {
+interface Photo {
   _id: string;
   path: string;
   channel_id: string;
 }
 
-interface ChannelProps {
+interface Channel {
   _id?: string;
   name: string;
   description: string;
@@ -31,7 +27,7 @@ interface EnrolledProps {
   channel_id: string;
 }
 
-interface VideosProps {
+interface Video {
   _id: string;
   video_src: string;
   photo_id: string;
@@ -40,40 +36,15 @@ interface VideosProps {
   description: string;
 }
 
-interface PhotosDoc extends Document {
-  path: string;
-  channel_id: string;
+interface SchemaExtends extends SchemaOptions {
+  strictPopulate: boolean;
 }
 
-interface ChannelDoc extends Document {
-  name: string;
-  description: string;
-  banner_id: string;
-  icon_id: string;
-  user_id: string;
-}
-
-interface UserDoc extends Document {
-  email: string;
-  password: string;
-}
-
-interface VideosDoc extends Document {
-  video_src: string;
-  mimetype: string;
-  channel_id: string;
-  description: string;
-}
-
-export {
-  UserDoc,
-  PhotosDoc,
-  UserProps,
-  VideosDoc,
-  ChannelDoc,
-  PhotosProps,
-  VideosProps,
-  ChannelProps,
+export type {
+  User,
+  Photo,
+  Video,
+  Channel,
   EnrolledProps,
   SchemaExtends,
 }

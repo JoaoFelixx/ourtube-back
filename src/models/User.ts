@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { UserProps } from '../interfaces';
+import { User } from '../interfaces';
 
-const User = new Schema({
+const Users = new Schema({
   _id: {
     type: String,
     required: true
@@ -18,4 +18,4 @@ const User = new Schema({
   },
 }, { timestamps: true });
 
-model<UserProps>('users', User);
+model<User>('users', Users);

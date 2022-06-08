@@ -1,17 +1,21 @@
-import getVideoById from "./getVideoById";
-import getAllVideos from "./getAllVideos";
-import getChannelById from "./getChannelById";
-import getChannelsData from "./getChannelsData";
-import { getChannelByName } from "./getChannelByName";
-import { getChannelByUserId } from "./getChannelByUserId";
-import { getVideoByDescription } from './getVideosByDescription';
+import {
+  getAllChannelsController,
+  getChannelByIdController,
+  getChannelByNameController,
+  getChannelByUserIdController,
+} from './channel';
+import {
+  getAllVideosController,
+  getMediaByIdController,
+  getVideoByDescriptionController,
+} from './video';
 
 export {
-  getVideoById,
-  getAllVideos,
-  getChannelById,
-  getChannelsData,
-  getChannelByName,
-  getChannelByUserId,
-  getVideoByDescription,
+  getAllVideosController,
+  getMediaByIdController,
+  getAllChannelsController,
+  getChannelByIdController,
+  getChannelByNameController,
+  getChannelByUserIdController,
+  getVideoByDescriptionController,
 }

@@ -1,5 +1,3 @@
-import authUser from "./authUser";
+import { authUserController } from "./user";
 
-export {
-  authUser,
-}
+export { authUserController };

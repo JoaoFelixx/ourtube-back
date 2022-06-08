@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { PhotosProps, SchemaExtends } from '../interfaces';
+import { Photo, SchemaExtends } from '../interfaces';
 
 const Photos = new Schema({
   _id: {
@@ -18,4 +18,4 @@ const Photos = new Schema({
 
 }, { timestamps: true, strictPopulate: false } as SchemaExtends);
 
-model<PhotosProps>('photos', Photos);
+model<Photo>('photos', Photos);

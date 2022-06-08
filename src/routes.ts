@@ -1,40 +1,40 @@
 import { Router } from 'express';
 import {
-  authUser,
-  createUser,
-  uploadVideo,
-  getAllVideos,
-  getVideoById,
-  createChannel,
-  getChannelById,
-  getChannelsData,
-  getChannelByName,
-  updateChannelIcon,
-  getChannelByUserId,
-  updateChannelBanner,
-  getVideoByDescription,
+  authUserController,
+  createUserController,
+  updateIconController,
+  createVideoController,
+  updateBannerController,
+  getAllVideosController,
+  getMediaByIdController,
+  createChannelController,
+  getAllChannelsController,
+  getChannelByIdController,
+  getChannelByNameController,
+  getChannelByUserIdController,
+  getVideoByDescriptionController,
 } from './useCases';
 import { middlewareJwt, middlewareMulter } from './middleware';
 
 const routes = Router();
 
-routes.post('/auth', authUser);
-routes.post('/users', createUser);
+routes.post('/auth', authUserController);
+routes.post('/users', createUserController);
 
-routes.get('/videos', getAllVideos);
-routes.get('/files/:id', getVideoById);
-routes.get('/channels', getChannelsData);
-routes.get('/channel/:id', getChannelById);
-routes.get('/myChannel', getChannelByUserId);
-routes.get('/channelByName/:name', getChannelByName);
-routes.get('/videoByDescription/:description', getVideoByDescription);
+routes.get('/videos', getAllVideosController);
+routes.get('/files/:id', getMediaByIdController);
+routes.get('/channels', getAllChannelsController);
+routes.get('/channel/:id', getChannelByIdController);
+routes.get('/myChannel', getChannelByUserIdController);
+routes.get('/channelByName/:name', getChannelByNameController);
+routes.get('/videoByDescription/:description', getVideoByDescriptionController);
 
 //routes.use(middlewareJwt);
 
-routes.post('/channels', createChannel);
-routes.post('/videos', middlewareMulter.array('video', 2), uploadVideo);
+routes.post('/channels', createChannelController);
+routes.post('/videos', middlewareMulter.array('video', 2), createVideoController);
 
-routes.put('/channels/icon/:channel_id', middlewareMulter.single('icon'), updateChannelIcon);
-routes.put('/channels/banner/:channel_id', middlewareMulter.single('banner'), updateChannelBanner);
+routes.put('/channels/icon/:channel_id', middlewareMulter.single('icon'), updateBannerController);
+routes.put('/channels/banner/:channel_id', middlewareMulter.single('banner'), updateIconController);
 
 export { routes };

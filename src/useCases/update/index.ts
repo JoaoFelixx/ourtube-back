@@ -1,7 +1,6 @@
-import updateChannelIcon from "./updateChannelIcon";
-import updateChannelBanner from "./updateChannelBanner";
+import { updateBannerController, updateIconController } from "./channel";
 
 export {
-  updateChannelIcon,
-  updateChannelBanner,
+  updateIconController,
+  updateBannerController,
 }

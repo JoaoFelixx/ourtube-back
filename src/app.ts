@@ -1,13 +1,15 @@
 import "dotenv/config";
-import "./connection/mongoStart";
-import express from "express";
 import cors from "cors";
+import express from "express";
+import mongoose from "mongoose";
 import { routes } from "./routes";
 
 const application = express();
 
 application.use(cors());
 application.use(express.json());
-application.use('/api/v1', routes);
+application.use('/api', routes);
+
+mongoose.connect(process.env.URL_MONGO_DATABASE || '');
 
 export { application };

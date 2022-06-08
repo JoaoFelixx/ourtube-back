@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { VideosProps, SchemaExtends } from '../interfaces';
+import { Video, SchemaExtends } from '../interfaces';
 
 const Videos = new Schema({
   _id: {
@@ -30,4 +30,4 @@ const Videos = new Schema({
   },
 }, { timestamps: true, strictPopulate: false } as SchemaExtends);
 
-model<VideosProps>('videos', Videos);
+model<Video>('videos', Videos);

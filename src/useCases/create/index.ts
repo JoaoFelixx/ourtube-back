@@ -1,9 +1,9 @@
-import createUser from "./createUser";
-import uploadVideo from "./uploadVideo";
-import createChannel from "./createChannel";
+import { createUserController } from './user';
+import { createVideoController } from './video';
+import { createChannelController } from './channel';
 
 export {
-  createUser,
-  uploadVideo,
-  createChannel
+  createUserController,
+  createVideoController,
+  createChannelController,
 }
