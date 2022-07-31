@@ -3,7 +3,7 @@ import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
 import { routes } from "./routes";
-
+import './dbRedis';
 const application = express();
 
 application.use(cors());
