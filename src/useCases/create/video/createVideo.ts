@@ -1,16 +1,12 @@
-import { Photo, Video } from "../../../interfaces";
-import { Photos, Videos } from "../../../models";
+import { Videos } from "../../../models";
+import { Video } from "../../../interfaces";
 
-interface VideoProps {
-  photo: Photo;
-  video: Video;
-}
+export async function createVideo(video: Video): Promise<Video | Error> {
+  try {
+    const result = await Videos.create<Video>(video)
 
-export async function createVideo({ photo, video }: VideoProps): Promise<VideoProps> {
-  const [videoCreated, photoCreated] = await Promise.all([
-    Videos.create<Video>(video),
-    Photos.create<Photo>(photo),
-  ])
-
-  return { video: videoCreated, photo: photoCreated };
+    return result;
+  } catch (error) {
+    return new Error('Error uploading video');
+  }
 }

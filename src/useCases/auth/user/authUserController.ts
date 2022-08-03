@@ -12,14 +12,16 @@ export async function authUserController(request: Request, response: Response) {
     if (result instanceof Error)
       return response.status(400).json(result.message);
 
-    const passwordIsCorrect = await bcrypt.compare(password, result.password);
+    const [user, channel] = result;
+
+    const passwordIsCorrect = await bcrypt.compare(password, user.password);
 
     if (!passwordIsCorrect)
       return response.status(400).json('Email or/and password is invalid');
 
-    const token = await jwt.sign({ id: result._id }, process.env.SECRET_KEY_JWT || '', { expiresIn: '1d' });
+    const token = await jwt.sign({ id: channel._id }, process.env.SECRET_KEY_JWT || '', { expiresIn: '1d' });
 
-    response.status(201).json({ id: result._id, token });
+    response.status(201).json({ id: channel._id, token });
 
   } catch (err) {
     return response.sendStatus(400)

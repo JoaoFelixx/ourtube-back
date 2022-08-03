@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { User } from '../interfaces';
 
-const Users = new Schema({
+const Users = new Schema<User>({
   _id: {
     type: String,
     required: true

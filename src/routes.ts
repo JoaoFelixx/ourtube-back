@@ -6,7 +6,6 @@ import {
   createVideoController,
   updateBannerController,
   getAllVideosController,
-  getMediaByIdController,
   createChannelController,
   getAllChannelsController,
   getChannelByIdController,
@@ -22,14 +21,14 @@ routes.post('/auth', authUserController);
 routes.post('/users', createUserController);
 
 routes.get('/videos', getAllVideosController);
-routes.get('/files/:id', getMediaByIdController);
 routes.get('/channels', getAllChannelsController);
 routes.get('/channel/:id', getChannelByIdController);
-routes.get('/myChannel', getChannelByUserIdController);
 routes.get('/channelByName/:name', getChannelByNameController);
 routes.get('/videoByDescription/:description', getVideoByDescriptionController);
 
-//routes.use(middlewareJwt);
+routes.use(middlewareJwt);
+
+routes.get('/myChannel', getChannelByUserIdController);
 
 routes.post('/channels', createChannelController);
 routes.post('/videos', middlewareMulter.array('video', 2), createVideoController);

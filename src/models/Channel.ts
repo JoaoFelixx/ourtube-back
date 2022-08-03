@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { Channel, SchemaExtends } from "../interfaces";
 
-const Channels = new Schema({
+const Channels = new Schema<Channel>({
   _id: {
     type: String,
     required: true
@@ -14,15 +14,13 @@ const Channels = new Schema({
     type: String,
     required: true
   },
-  banner_id: {
+  banner_src: {
     type: String,
     required: false,
-    ref: 'photos'
   },
-  icon_id: {
+  icon_src: {
     type: String,
     required: false,
-    ref: 'photos'
   },
   user_id: {
     type: String,

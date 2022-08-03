@@ -1,20 +1,14 @@
 import { Request, Response } from 'express'
-import { Photo } from '../../../../interfaces';
 import { updateBanner } from './updateBanner';
-import { randomUUID as uuid } from 'crypto';
 
 export async function updateBannerController(request: Request, response: Response) {
   try {
-    const { path } = request.file as { path: string };
+    const { filename } = request.file as { filename: string };
     const { channel_id } = request.params;
 
-    const banner: Photo = {
-      _id: uuid(),
-      path,
-      channel_id,
-    }
+    const banner_src = process.env.URL_STATIC_MEDIAS + filename;
 
-    const result = await updateBanner(banner);
+    const result = await updateBanner({ _id: channel_id, banner_src });
 
     if (result instanceof Error)
       return response.status(400).json(result.message);

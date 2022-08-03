@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { Video, SchemaExtends } from '../interfaces';
 
-const Videos = new Schema({
+const Videos = new Schema<Video>({
   _id: {
     type: String,
     required: true
@@ -14,10 +14,9 @@ const Videos = new Schema({
     type: String,
     required: true,
   },
-  photo_id: {
+  preview_src: {
     type: String,
     required: true,
-    ref: 'photos',
   },
   description: {
     type: String,

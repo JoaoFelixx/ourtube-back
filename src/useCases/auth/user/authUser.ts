@@ -1,14 +1,21 @@
-import { Users } from '../../../models';
-import { User } from '../../../interfaces';
+import { Users, Channels } from '../../../models';
+import { Channel, User } from '../../../interfaces';
 
-export async function authUser(email: string): Promise<Error | User> {
+type Result = [User, Channel];
+
+export async function authUser(email: string): Promise<Error | Result> {
   try {
     const user = await Users.findOne({ email });
 
     if (!user)
       return new Error('User does not registered');
 
-    return user;
+    const channel = await Channels.findOne({ user_id: user.id });
+
+    if (!channel)
+      return new Error('Channel does not exists');
+
+    return [user, channel];
 
   } catch (error) {
     return new Error('Error creating logging');

@@ -1,20 +1,14 @@
 import { Request, Response } from 'express'
-import { Photo } from '../../../../interfaces';
 import { updateIcon } from './updateIcon';
-import { randomUUID as uuid } from 'crypto';
 
 export async function updateIconController(request: Request, response: Response) {
   try {
-    const { path } = request.file as { path: string };
+    const { filename } = request.file as { filename: string };
     const { channel_id } = request.params;
 
-    const photo: Photo = {
-      _id: uuid(),
-      path,
-      channel_id,
-    }
+    const icon_src = process.env.URL_STATIC_MEDIAS + filename;
 
-    const result = await updateIcon(photo);
+    const result = await updateIcon({ _id: channel_id, icon_src });
 
     if (result instanceof Error)
       return response.status(400).json(result.message);

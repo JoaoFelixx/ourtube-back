@@ -1,16 +1,19 @@
-import { Channel, Photo } from "../../../../interfaces";
-import { Channels, Photos } from "../../../../models";
+import { Channel } from "../../../../interfaces";
+import { Channels } from "../../../../models";
 
-export async function updateBanner(photo: Photo): Promise<Channel | Error> {
+interface BannerUpdate {
+  banner_src: string;
+  _id: string;
+}
+
+export async function updateBanner({ _id, banner_src }: BannerUpdate): Promise<Channel | Error> {
   try {
-    const { channel_id, _id } = await Photos.create<Photo>(photo);
-
-    const channel = await Channels.findById({ _id: channel_id });
+    const channel = await Channels.findById({ _id });
 
     if (!channel)
       return new Error('Channel does not exists');
 
-    channel.banner_id = _id;
+    channel.banner_src = banner_src;
 
     await channel.save();
 

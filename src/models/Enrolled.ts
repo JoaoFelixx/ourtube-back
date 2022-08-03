@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { EnrolledProps, SchemaExtends } from '../interfaces';
 
-const Enrolled = new Schema({
+const Enrolled = new Schema<EnrolledProps>({
   _id: {
     type: String,
     required: true

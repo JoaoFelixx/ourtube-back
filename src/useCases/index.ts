@@ -7,7 +7,6 @@ import {
 } from "./create";
 import {
   getAllVideosController,
-  getMediaByIdController,
   getAllChannelsController,
   getChannelByIdController,
   getChannelByNameController,
@@ -22,7 +21,6 @@ export {
   createVideoController,
   updateBannerController,
   getAllVideosController,
-  getMediaByIdController,
   createChannelController,
   getAllChannelsController,
   getChannelByIdController,

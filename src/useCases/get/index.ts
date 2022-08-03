@@ -4,15 +4,10 @@ import {
   getChannelByNameController,
   getChannelByUserIdController,
 } from './channel';
-import {
-  getAllVideosController,
-  getMediaByIdController,
-  getVideoByDescriptionController,
-} from './video';
+import { getAllVideosController, getVideoByDescriptionController, } from './video';
 
 export {
   getAllVideosController,
-  getMediaByIdController,
   getAllChannelsController,
   getChannelByIdController,
   getChannelByNameController,

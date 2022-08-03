@@ -6,19 +6,13 @@ interface User {
   password: string;
 }
 
-interface Photo {
-  _id: string;
-  path: string;
-  channel_id: string;
-}
-
 interface Channel {
   _id?: string;
   name: string;
-  description: string;
-  banner_id?: string;
-  icon_id?: string;
   user_id: string;
+  icon_src?: string;
+  banner_src?: string;
+  description: string;
 }
 
 interface EnrolledProps {
@@ -29,10 +23,10 @@ interface EnrolledProps {
 
 interface Video {
   _id: string;
-  video_src: string;
-  photo_id: string;
   mimetype: string;
+  video_src: string;
   channel_id: string;
+  preview_src: string;
   description: string;
 }
 
@@ -42,7 +36,6 @@ interface SchemaExtends extends SchemaOptions {
 
 export type {
   User,
-  Photo,
   Video,
   Channel,
   EnrolledProps,

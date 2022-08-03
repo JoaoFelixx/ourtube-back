@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Video, Photo } from '../../../interfaces';
+import { Video } from '../../../interfaces';
 import { createVideo } from './createVideo';
 import { randomUUID as uuid } from "crypto";
 
@@ -14,32 +14,19 @@ export async function createVideoController(request: Request, response: Response
     if (!photo || !video)
       return response.status(400).json('Send video and preview photo');
 
-    const photo_id = uuid();
-
-    const photoForUpload: Photo = {
-      _id: photo_id,
-      path: photo.path,
-      channel_id: request.body.channel_id,
-    }
-
     const videoForUpload: Video = {
       _id: uuid(),
-      photo_id,
+      preview_src: process.env.URL_STATIC_MEDIAS + photo.filename,
       mimetype: video.mimetype,
-      video_src: video.path,
+      video_src: process.env.URL_STATIC_MEDIAS + video.filename,
       channel_id: request.body.channel_id,
       description: request.body.description
     }
 
-    const {
-      photo: photoResult,
-      video: videoResult
-    } = await createVideo({ photo: photoForUpload, video: videoForUpload });
+    const result = await createVideo(videoForUpload);
 
-    const result = {
-      video: videoResult,
-      preview: photoResult,
-    }
+    if (result instanceof Error)
+      return response.status(400).json(result.message)
 
     response.status(201).json(result);
 
