@@ -1,4 +1,3 @@
-import { decodeId } from './decodeId';
-import { isValidUuid } from './isValidUuid';
+import { decodeId } from './decode-id';
 
-export { decodeId, isValidUuid };
+export { decodeId };

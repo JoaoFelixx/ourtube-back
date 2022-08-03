@@ -34,7 +34,7 @@ routes.get('/videoByDescription/:description', getVideoByDescriptionController);
 routes.post('/channels', createChannelController);
 routes.post('/videos', middlewareMulter.array('video', 2), createVideoController);
 
-routes.put('/channels/icon/:channel_id', middlewareMulter.single('icon'), updateBannerController);
-routes.put('/channels/banner/:channel_id', middlewareMulter.single('banner'), updateIconController);
+routes.put('/channels/icon/:channel_id', middlewareMulter.single('icon'), updateIconController);
+routes.put('/channels/banner/:channel_id', middlewareMulter.single('banner'), updateBannerController);
 
 export { routes };

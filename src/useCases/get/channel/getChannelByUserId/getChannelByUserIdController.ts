@@ -4,9 +4,9 @@ import { getChannelByUserId } from './getChannelByUserId';
 
 export async function getChannelByUserIdController(request: Request, response: Response) {
   try {
-    const user_id = decodeId(request.headers.authorization);
+    const user_id = await decodeId(request.headers.authorization);
 
-    if (!user_id)
+    if (user_id instanceof Error)
       return response.sendStatus(401);
 
     const result = await getChannelByUserId(user_id);

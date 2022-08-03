@@ -1,19 +1,24 @@
+import { client } from "../../../../db-redis";
 import { Photo, Video } from "../../../../interfaces";
 import { Photos, Videos } from "../../../../models";
 
-interface Result {
-  photo: Photo | null;
-  video: Video | null;
-}
+type Result = Video | Photo | null;
 
-export async function getMediaById(id: string): Promise<Result | Error> {
+export async function getMediaById(_id: string): Promise<Result | Error> {
   try {
-    const [photo, video] = await Promise.all([
-      Photos.findById(id),
-      Videos.findById(id),
+    const result = await client.get(_id);
+
+    if (result) {
+      const media: Result = JSON.parse(result);
+      return media;
+    }
+
+    const media = await Promise.any([
+      Photos.findById<Photo>(_id),
+      Videos.findById<Video>(_id),
     ])
 
-    return { photo, video }
+    return media
 
   } catch (error) {
     return new Error('Error getting media');

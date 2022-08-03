@@ -1,20 +1,20 @@
 import { Request, Response } from 'express'
-import { randomUUID as uuid } from 'crypto';
 import { Photo } from '../../../../interfaces';
 import { updateBanner } from './updateBanner';
+import { randomUUID as uuid } from 'crypto';
 
 export async function updateBannerController(request: Request, response: Response) {
   try {
     const { path } = request.file as { path: string };
     const { channel_id } = request.params;
 
-    const photo: Photo = {
+    const banner: Photo = {
       _id: uuid(),
       path,
       channel_id,
     }
 
-    const result = await updateBanner(photo);
+    const result = await updateBanner(banner);
 
     if (result instanceof Error)
       return response.status(400).json(result.message);

@@ -1,6 +1,6 @@
 import { Channels } from "../../../../models";
 import { Channel } from "../../../../interfaces";
-import { client } from '../../../../dbRedis';
+import { client } from '../../../../db-redis';
 
 export async function getChannelByUserId(user_id: string): Promise<Error | Channel | null> {
   try {
@@ -8,7 +8,6 @@ export async function getChannelByUserId(user_id: string): Promise<Error | Chann
 
     if (result) {
       const channel: Channel = JSON.parse(result);
-
       return channel;
     }
 

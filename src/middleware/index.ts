@@ -1,7 +1,4 @@
-import { middlewareJwt } from "./middlewareJwt";
-import { middlewareMulter } from "./middlewaresMulter";
+import { middlewareJwt } from "./middleware-jwt";
+import { middlewareMulter } from "./middleware-multer";
 
-export {
-  middlewareJwt,
-  middlewareMulter,
-}
+export { middlewareJwt, middlewareMulter };

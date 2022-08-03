@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { Photo } from '../../../../interfaces';
-import { randomUUID as uuid } from 'crypto';
 import { updateIcon } from './updateIcon';
+import { randomUUID as uuid } from 'crypto';
 
 export async function updateIconController(request: Request, response: Response) {
   try {

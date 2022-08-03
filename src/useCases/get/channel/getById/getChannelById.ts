@@ -1,6 +1,6 @@
 import { Channels } from "../../../../models";
 import { Channel } from "../../../../interfaces";
-import { client } from '../../../../dbRedis';
+import { client } from '../../../../db-redis';
 
 export async function getChannelById(_id: string): Promise<Channel | Error | null> {
   try {

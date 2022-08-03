@@ -11,15 +11,13 @@ export async function getMediaByIdController(request: Request, response: Respons
     if (result instanceof Error)
       return response.status(400).json(result.message);
 
-    const { photo, video } = result;
+    if (!result)
+      return response.sendStatus(204);
 
-    if (video?.video_src)
-      return createReadStream(video?.video_src).pipe(response);
+    if ('path' in result)
+      return await createReadStream(result.path).pipe(response);
 
-    if (photo?.path)
-      return createReadStream(photo?.path).pipe(response);
-
-    response.sendStatus(204);
+    await createReadStream(result.video_src).pipe(response);
 
   } catch (err) {
     return response.sendStatus(400)
