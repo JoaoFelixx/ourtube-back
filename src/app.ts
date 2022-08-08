@@ -15,6 +15,6 @@ application.use(express.urlencoded({ extended: true }));
 application.use('/api', routes);
 application.use("/files", express.static(staticFilesPath));
 
-(async () => await mongoose.connect(process.env.URL_MONGO_DATABASE || ''))()
+(async () => await mongoose.connect(process.env.URL_MONGO_DATABASE || ''))();
 
 export { application };

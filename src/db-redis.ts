@@ -6,7 +6,7 @@ const client = createClient({ url: process.env.URL_REDIS });
   try {
     await client.connect();
   } catch (error) {
-    console.log(error);
+    return
   }
 })();
 
