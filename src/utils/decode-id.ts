@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import { Payload } from '../interfaces';
-import { promisify } from 'util';
 
 export const decodeId = async (authorization: string | undefined): Promise<Payload | Error> => {
   try {
@@ -9,7 +8,7 @@ export const decodeId = async (authorization: string | undefined): Promise<Paylo
 
     const token = authorization.replace('Bearer', '').trim();
 
-    const result = await promisify(jwt.decode)(token, {}) as Payload;
+    const result = await jwt.decode(token) as Payload;
 
     return result;
 
