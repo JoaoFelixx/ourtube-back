@@ -5,8 +5,9 @@ const client = createClient({ url: process.env.URL_REDIS });
 (async () => {
   try {
     await client.connect();
+    console.log('Connected at Redis');
   } catch (error) {
-    return
+    console.log('Refused connection');
   }
 })();
 
