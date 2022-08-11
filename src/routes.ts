@@ -13,6 +13,7 @@ import {
   getChannelByNameController,
   getChannelByUserIdController,
   getVideoByDescriptionController,
+  getUserSubscribedChannelsController
 } from './useCases';
 import { middlewareJwt, middlewareMulter } from './middleware';
 
@@ -30,6 +31,7 @@ routes.get('/videoByDescription/:description', getVideoByDescriptionController);
 routes.use(middlewareJwt);
 
 routes.get('/myChannel', getChannelByUserIdController);
+routes.get('/user/subscribes', getUserSubscribedChannelsController);
 
 routes.post('/videos', middlewareMulter.array('video', 2), createVideoController);
 routes.post('/channels', createChannelController);

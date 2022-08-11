@@ -13,6 +13,7 @@ import {
   getChannelByNameController,
   getChannelByUserIdController,
   getVideoByDescriptionController,
+  getUserSubscribedChannelsController
 } from './get';
 
 export {
@@ -29,4 +30,5 @@ export {
   getChannelByNameController,
   getChannelByUserIdController,
   getVideoByDescriptionController,
+  getUserSubscribedChannelsController,
 }

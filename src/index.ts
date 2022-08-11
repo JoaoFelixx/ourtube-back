@@ -5,7 +5,9 @@ import { application } from "./app";
 const PORT = process.env.PORT || 4545;
 const numCPUs = cpus().length;
 
-if (cluster.isPrimary) {
+const condition = false;
+
+if (cluster.isPrimary && condition) {
   for (let i = 0; i < numCPUs; i++)
     cluster.fork();
 

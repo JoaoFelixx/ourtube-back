@@ -3,6 +3,7 @@ import {
   getChannelByIdController,
   getChannelByNameController,
   getChannelByUserIdController,
+  getUserSubscribedChannelsController,
 } from './channel';
 import { getAllVideosController, getVideoByDescriptionController, } from './video';
 
@@ -13,4 +14,5 @@ export {
   getChannelByNameController,
   getChannelByUserIdController,
   getVideoByDescriptionController,
+  getUserSubscribedChannelsController,
 }
