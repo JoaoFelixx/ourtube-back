@@ -20,11 +20,11 @@ export async function authUserController(request: Request, response: Response) {
       return response.status(400).json('Email or/and password is invalid');
 
     const token = await jwt.sign({ 
-      channel_id: channel._id,
+      channel_id: channel ? channel._id : null,
       user_id: user._id, 
     }, process.env.SECRET_KEY_JWT || '', { expiresIn: '1d' });
 
-    response.status(201).json({ id: channel._id, token });
+    response.status(201).json({ token });
 
   } catch (err) {
     return response.sendStatus(400)

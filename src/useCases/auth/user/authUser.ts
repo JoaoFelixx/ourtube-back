@@ -1,7 +1,7 @@
 import { Users, Channels } from '../../../models';
 import { Channel, User } from '../../../interfaces';
 
-type Result = [User, Channel];
+type Result = [User, Channel | null];
 
 export async function authUser(email: string): Promise<Error | Result> {
   try {
@@ -11,9 +11,6 @@ export async function authUser(email: string): Promise<Error | Result> {
       return new Error('User does not registered');
 
     const channel = await Channels.findOne({ user_id: user.id });
-
-    if (!channel)
-      return new Error('Channel does not exists');
 
     return [user, channel];
 
