@@ -1,9 +1,10 @@
 import { createUserController } from './user';
 import { createVideoController } from './video';
-import { createChannelController } from './channel';
+import { createChannelController, createSubscribeController } from './channel';
 
 export {
   createUserController,
   createVideoController,
   createChannelController,
+  createSubscribeController,
 }

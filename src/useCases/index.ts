@@ -4,6 +4,7 @@ import {
   createUserController,
   createVideoController,
   createChannelController,
+  createSubscribeController,
 } from "./create";
 import {
   getAllVideosController,
@@ -24,6 +25,7 @@ export {
   createChannelController,
   getAllChannelsController,
   getChannelByIdController,
+  createSubscribeController,
   getChannelByNameController,
   getChannelByUserIdController,
   getVideoByDescriptionController,

@@ -9,6 +9,7 @@ import {
   createChannelController,
   getAllChannelsController,
   getChannelByIdController,
+  createSubscribeController,
   getChannelByNameController,
   getChannelByUserIdController,
   getVideoByDescriptionController,
@@ -30,8 +31,9 @@ routes.use(middlewareJwt);
 
 routes.get('/myChannel', getChannelByUserIdController);
 
-routes.post('/channels', createChannelController);
 routes.post('/videos', middlewareMulter.array('video', 2), createVideoController);
+routes.post('/channels', createChannelController);
+routes.post('/subscribe', createSubscribeController);
 
 routes.put('/channels/icon/:channel_id', middlewareMulter.single('icon'), updateIconController);
 routes.put('/channels/banner/:channel_id', middlewareMulter.single('banner'), updateBannerController);

@@ -1,15 +1,17 @@
 import jwt from 'jsonwebtoken';
+import { Payload } from '../interfaces';
+import { promisify } from 'util';
 
-export const decodeId = async (authorization: string | undefined): Promise<string | Error> => {
+export const decodeId = async (authorization: string | undefined): Promise<Payload | Error> => {
   try {
     if (!authorization)
       throw new Error()
 
     const token = authorization.replace('Bearer', '').trim();
 
-    const { id } = await jwt.decode(token) as { id: string };
+    const result = await promisify(jwt.decode)(token, {}) as Payload;
 
-    return id;
+    return result;
 
   } catch (error) {
     return new Error('Unauthorized');

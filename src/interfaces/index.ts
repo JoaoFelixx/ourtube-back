@@ -6,6 +6,11 @@ interface User {
   password: string;
 }
 
+interface Payload {
+  user_id: string;
+  channel_id: string;
+}
+
 interface Channel {
   _id?: string;
   name: string;
@@ -38,6 +43,7 @@ export type {
   User,
   Video,
   Channel,
+  Payload,
   EnrolledProps,
   SchemaExtends,
 }

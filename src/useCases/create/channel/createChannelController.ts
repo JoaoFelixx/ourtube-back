@@ -6,17 +6,17 @@ import { randomUUID as uuid } from 'crypto';
 
 export async function createChannelController(request: Request, response: Response) {
   try {
-    const user_id = await decodeId(request.headers.authorization);
+    const res = await decodeId(request.headers.authorization);
 
     const { description, name } = request.body;
 
-    if (user_id instanceof Error)
+    if (res instanceof Error)
       return response.sendStatus(401);
 
     const channel: Channel = {
       _id: uuid(),
       name,
-      user_id,
+      user_id: res.user_id,
       description,
     }
 

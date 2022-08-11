@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { Request, Response } from 'express'
 import { authUser } from './authUser';
+import { Request, Response } from 'express'
 
 export async function authUserController(request: Request, response: Response) {
   try {
@@ -19,7 +19,10 @@ export async function authUserController(request: Request, response: Response) {
     if (!passwordIsCorrect)
       return response.status(400).json('Email or/and password is invalid');
 
-    const token = await jwt.sign({ id: channel._id }, process.env.SECRET_KEY_JWT || '', { expiresIn: '1d' });
+    const token = await jwt.sign({ 
+      channel_id: channel._id,
+      user_id: user._id, 
+    }, process.env.SECRET_KEY_JWT || '', { expiresIn: '1d' });
 
     response.status(201).json({ id: channel._id, token });
 

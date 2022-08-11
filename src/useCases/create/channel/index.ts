@@ -1,3 +1,4 @@
 import { createChannelController } from './createChannelController';
+import { createSubscribeController } from './subscribe';
 
-export { createChannelController };
+export { createChannelController, createSubscribeController };
