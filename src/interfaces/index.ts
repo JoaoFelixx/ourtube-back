@@ -8,7 +8,7 @@ interface User {
 
 interface Payload {
   user_id: string;
-  channel_id: string;
+  channel_id?: string;
 }
 
 interface Channel {

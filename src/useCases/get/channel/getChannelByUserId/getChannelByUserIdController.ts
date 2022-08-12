@@ -11,6 +11,9 @@ export async function getChannelByUserIdController(request: Request, response: R
 
     const { channel_id } = IDs;
 
+    if (!channel_id)
+      return response.sendStatus(204);
+
     const result = await getChannelById(channel_id);
 
     if (result instanceof Error)
