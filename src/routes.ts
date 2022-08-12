@@ -26,7 +26,7 @@ routes.get('/videos', getAllVideosController);
 routes.get('/channels', getAllChannelsController);
 routes.get('/channel/:id', getChannelByIdController);
 routes.get('/channelByName/:name', getChannelByNameController);
-routes.get('/videoByDescription/:description', getVideoByDescriptionController);
+routes.get('/search/:description', getVideoByDescriptionController);
 
 routes.use(middlewareJwt);
 
