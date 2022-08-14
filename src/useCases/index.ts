@@ -1,5 +1,4 @@
 import { authUserController } from "./auth";
-import { updateBannerController, updateIconController } from './update';
 import {
   createUserController,
   createVideoController,
@@ -15,6 +14,7 @@ import {
   getVideoByDescriptionController,
   getUserSubscribedChannelsController
 } from './get';
+import { updateBannerController, updateIconController } from './update';
 
 export {
   authUserController,

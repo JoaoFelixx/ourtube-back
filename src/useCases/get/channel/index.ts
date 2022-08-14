@@ -1,6 +1,6 @@
 import { getAllChannelsController } from './getAll';
 import { getChannelByIdController } from './getById';
-import { getChannelByNameController } from './getByName';
+import { getChannelByNameController } from './getChannelByName';
 import { getChannelByUserIdController } from './getChannelByUserId';
 import { getUserSubscribedChannelsController } from './getUserChannel';
 
