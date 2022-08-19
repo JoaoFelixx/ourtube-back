@@ -11,7 +11,7 @@ if (cluster.isPrimary && condition) {
   for (let i = 0; i < numCPUs; i++)
     cluster.fork();
 
-  cluster.on('exit', (worker, code, signal) => cluster.fork());
+  cluster.on('exit', () => cluster.fork());
   
 } else
   application.listen(PORT, () => console.log(`Server running on port ${PORT}`));
