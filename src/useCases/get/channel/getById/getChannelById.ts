@@ -1,25 +1,43 @@
-import { Channels } from "../../../../models";
-import { Channel } from "../../../../interfaces";
-import { client } from '../../../../db-redis';
+import { Enrolled, Channels } from "../../../../models";
+import { Channel, EnrolledProps } from "../../../../interfaces";
+//import { client } from '../../../../db-redis';
 
-export async function getChannelById(_id: string): Promise<Channel | Error | null> {
+interface ChannelAndEnrolled extends Channel {
+  enrolled: EnrolledProps[];
+}
+
+interface ChannelOptions {
+  toObject: () => Channel;
+}
+
+export async function getChannelById(_id: string): Promise<ChannelAndEnrolled | Error | null> {
   try {
-    const result = await client.get(_id);
+    /* const result = await client.get(_id);
 
     if (result) {
       const channel: Channel = JSON.parse(result);
       
       return channel;
+    }*/
+
+    const channel = await Channels.findOne<Channel & ChannelOptions>({ _id });
+
+    if (!channel)
+      return new Error('Channel does not exists');
+
+    const enrolled = await Enrolled.find<EnrolledProps>({ channel_id: _id })
+
+    const channelWithEnrolled: ChannelAndEnrolled = {
+      ...channel.toObject(),
+      enrolled: [...enrolled]
     }
 
-    const channel = await Channels.findById<Channel>(_id);
+    /* if (channel)
+      await client.set(_id, JSON.stringify(channel)); */
 
-    if (channel)
-      await client.set(_id, JSON.stringify(channel));
-
-    return channel;
+    return channelWithEnrolled;
 
   } catch (error) {
-    return new Error('Error getting channel')
+    return new Error('Error getting channel');
   }
 }

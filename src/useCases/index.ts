@@ -1,4 +1,5 @@
 import { authUserController } from "./auth";
+import { deleteEnrolledController } from './delete';
 import {
   createUserController,
   createVideoController,
@@ -24,6 +25,7 @@ export {
   updateBannerController,
   getAllVideosController,
   createChannelController,
+  deleteEnrolledController,
   getAllChannelsController,
   getChannelByIdController,
   createSubscribeController,
