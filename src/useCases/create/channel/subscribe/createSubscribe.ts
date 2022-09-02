@@ -11,6 +11,12 @@ export async function createSubscribe(subscribe: EnrolledProps): Promise<Error |
       return result;
     }
 
+    const isAlreadySubscribed = await Enrolled
+      .findOne({ channel_id: subscribe.channel_id, user_id: subscribe.user_id });
+
+    if (isAlreadySubscribed)
+      return new Error('User is already subscribed at channel');
+
     if (channel._id === subscribe.channel_id)
       return new Error('Error, Cannot subscribe to the channel itself');
 
