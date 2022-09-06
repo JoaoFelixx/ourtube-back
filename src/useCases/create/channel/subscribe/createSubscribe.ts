@@ -1,26 +1,26 @@
 import { EnrolledProps } from '../../../../interfaces';
 import { Enrolled, Channels } from '../../../../models';
 
-export async function createSubscribe(subscribe: EnrolledProps): Promise<Error | EnrolledProps> {
+export async function createSubscribe({ _id, channel_id, user_id }: EnrolledProps): Promise<Error | EnrolledProps> {
   try {
-    const channel = await Channels.findOne({ user_id: subscribe.user_id });
-
-    if (!channel) {
-      const result = await Enrolled.create<EnrolledProps>(subscribe);
-
-      return result;
-    }
-
-    const isAlreadySubscribed = await Enrolled
-      .findOne({ channel_id: subscribe.channel_id, user_id: subscribe.user_id });
+    const [channel, isAlreadySubscribed] = await Promise.all([
+      Channels.findOne({ user_id }),
+      Enrolled.findOne<EnrolledProps>({ channel_id, user_id })
+    ])
 
     if (isAlreadySubscribed)
       return new Error('User is already subscribed at channel');
 
-    if (channel._id === subscribe.channel_id)
+    if (!channel) {
+      const result = await Enrolled.create<EnrolledProps>({ _id, channel_id, user_id });
+
+      return result;
+    }
+
+    if (channel._id === channel_id)
       return new Error('Error, Cannot subscribe to the channel itself');
 
-    const result = await Enrolled.create<EnrolledProps>(subscribe);
+    const result = await Enrolled.create<EnrolledProps>({ _id, channel_id, user_id });
 
     return result;
 
