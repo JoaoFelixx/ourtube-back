@@ -19,10 +19,10 @@ export async function authUserController(request: Request, response: Response) {
     if (!passwordIsCorrect)
       return response.status(400).json('Email or/and password is invalid');
 
-    const token = await jwt.sign({ 
+    const token = await jwt.sign({
       channel_id: channel ? channel._id : null,
-      user_id: user._id, 
-    }, process.env.SECRET_KEY_JWT || '', { expiresIn: '1d' });
+      user_id: user._id,
+    }, process.env.SECRET_KEY_JWT || '', {});
 
     response.status(201).json({ token });
 
