@@ -15,7 +15,11 @@ import {
   getVideoByDescriptionController,
   getUserSubscribedChannelsController
 } from './get';
-import { updateBannerController, updateIconController } from './update';
+import {
+  updateIconController,
+  updateBannerController,
+  updateChannelController,
+} from './update';
 
 export {
   authUserController,
@@ -24,6 +28,7 @@ export {
   createVideoController,
   updateBannerController,
   getAllVideosController,
+  updateChannelController,
   createChannelController,
   deleteEnrolledController,
   getAllChannelsController,

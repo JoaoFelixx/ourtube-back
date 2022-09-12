@@ -6,6 +6,7 @@ import {
   createVideoController,
   updateBannerController,
   getAllVideosController,
+  updateChannelController,
   createChannelController,
   deleteEnrolledController,
   getAllChannelsController,
@@ -38,6 +39,7 @@ routes.post('/videos', middlewareMulter.array('video', 2), createVideoController
 routes.post('/channels', createChannelController);
 routes.post('/subscribe', createSubscribeController);
 
+routes.put('/channels/:_id', updateChannelController);
 routes.put('/channels/icon/:channel_id', middlewareMulter.single('icon'), updateIconController);
 routes.put('/channels/banner/:channel_id', middlewareMulter.single('banner'), updateBannerController);
 
