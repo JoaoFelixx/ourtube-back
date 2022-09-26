@@ -8,7 +8,7 @@ import './db-mongo';
 
 const application = express();
 
-application.use(cors());
+application.use(cors({ origin: process.env.URL_ORIGIN }));
 application.use(express.json());
 application.use(express.urlencoded({ extended: true }));
 application.use('/api', routes);
