@@ -1,9 +1,9 @@
 import { Channels } from "../../../../models";
 import { Channel } from "../../../../interfaces";
 
-export async function getChannelById(channel_id: string): Promise<Error | Channel | null> {
+export async function getChannelByUserId(user_id: string): Promise<Error | Channel | null> {
   try {
-    const channel = await Channels.findOne<Channel>({ id: channel_id });
+    const channel = await Channels.findOne<Channel>({ user_id });
 
     return channel;
 
