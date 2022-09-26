@@ -7,7 +7,7 @@
     "name": "João Félix",
     "url": "https://felixdeveloper.netlify.app"
   },
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "start-dev": "ts-node src/index.ts",
     "build": "tsc",
